@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
-import { Title } from "../styles/pages/home";
+
+import { Title } from "@/styles/pages/home";
 
 interface IProduct {
   id: number;
@@ -11,6 +12,14 @@ interface HomeProps {
 }
 
 export default function Home({ recommendedProducts }: HomeProps) {
+  // Import Dynamic
+  async function handleSum() {
+    console.log(process.env.NEXT_PUBLIC_API_URL);
+    const math = (await import("../lib/math")).default;
+
+    console.log(math.sum(20, 23));
+  }
+
   return (
     <div>
       <section>
@@ -21,12 +30,17 @@ export default function Home({ recommendedProducts }: HomeProps) {
           })}
         </ul>
       </section>
+      <button onClick={handleSum}>Sum</button>
     </div>
   );
 }
 
+// Client, Server, Static
+
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-  const response = await fetch("http://localhost:3333/recommended");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/recommended`
+  );
 
   const recommendedProducts = await response.json();
 

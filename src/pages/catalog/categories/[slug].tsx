@@ -1,6 +1,7 @@
-import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { Title } from "../../../styles/pages/home";
+import { GetStaticPaths, GetStaticProps } from "next";
+
+import { Title } from "@/styles/pages/home";
 
 interface ICategory {
   id: number;
