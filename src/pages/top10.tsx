@@ -24,13 +24,13 @@ export default function Top10({ products }: Top10Props) {
 }
 
 export const getStaticProps: GetStaticProps<Top10Props> = async (ctx) => {
-  const response = await fetch("http://localhost:3333/products");
+  // const response = await fetch("http://localhost:3333/products");
 
-  const products = await response.json();
+  // const products = await response.json();
 
   return {
     props: {
-      products,
+      products: [],
     },
     revalidate: 5, // 5 segundos
   };
