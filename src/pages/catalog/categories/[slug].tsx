@@ -19,7 +19,7 @@ export default function Category({ products, category }: CategoryProps) {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <h1>{PrismicDOM.RichText.asText(category.data.title)}</h1>;
+    return <p>Carregando</p>;
   }
 
   return (
